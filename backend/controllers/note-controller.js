@@ -9,8 +9,6 @@ const createNote = async (req, res, next) => {
     description,
   });
 
-  console.log(createdNote);
-
   try {
     await createdNote.save();
     res.status(201).json({
@@ -24,4 +22,22 @@ const createNote = async (req, res, next) => {
   }
 };
 
+const getNote = async (req, res, next) => {
+  const noteId = req.params.id;
+  console.log("note id", noteId);
+
+  let note;
+  try {
+    note = await Note.findById(noteId);
+  } catch (error) {
+    res.status(500).json({
+      message: "Fetching a note failed!",
+    });
+  }
+  res.json({
+    note: note,
+  });
+};
+
 exports.createNote = createNote;
+exports.getNote = getNote;
