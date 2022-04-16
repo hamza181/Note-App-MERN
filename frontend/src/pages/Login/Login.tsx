@@ -1,8 +1,11 @@
 import { Avatar, Button, TextField } from "@mui/material";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import classes from "./Login.module.scss";
 
 function Login() {
+  let navigate = useNavigate();
+
   const [login, setLogin] = useState(true);
   const [formData, setFormData] = useState({
     email: "",
@@ -22,6 +25,15 @@ function Login() {
       console.log(error);
     }
   };
+
+  const loginSignup = () => {
+    try {
+      navigate("/notes");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className={classes.main}>
       <div className={classes.box}>
@@ -56,7 +68,9 @@ function Login() {
             onChange={handleChange}
             style={{ width: "100%", marginBottom: "15px" }}
           />
-          <Button variant="contained">{login ? "Login" : "Signup"}</Button>
+          <Button variant="contained" onClick={loginSignup}>
+            {login ? "Login" : "Signup"}
+          </Button>
           <p>
             {login ? `Can't` : "Already"} have account ?{" "}
             <span

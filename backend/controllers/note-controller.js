@@ -47,9 +47,8 @@ const getAllNotes = async (req, res, next) => {
       message: "Fetching notes failed!",
     });
   }
-  res.json({
-    note: note,
-  });
+  // res.json({note});
+  res.json({note: note.map((p) => p.toObject({ getters: true }))});
 };
 
 const updateNote = async (req, res, next) => {

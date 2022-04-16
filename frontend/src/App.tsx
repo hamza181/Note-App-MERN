@@ -9,8 +9,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />}>
-        {/* <Route path="/" element={<Home />}> */}
+        <Route path="/" element={<Login />}></Route>
+        <Route path="/notes" element={<Home />}>
           {/* <Route index element={<Login />} /> */}
           {/* <Route path="teams" element={<Teams />}>
           <Route path=":teamId" element={<Team />} />
