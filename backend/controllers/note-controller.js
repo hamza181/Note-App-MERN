@@ -82,7 +82,33 @@ const updateNote = async (req, res, next) => {
   });
 };
 
+const deleteNote = async (req, res, next) => {
+  const noteId = req.params.id;
+
+  let note;
+  try {
+    note = await Note.findById(noteId);
+  } catch (error) {
+    res.status(500).json({
+      message: "Fetching a note failed!",
+    });
+  }
+
+  try {
+    await note.remove();
+  } catch (error) {
+    res.status(500).json({
+      message: "Deleting a note failed!",
+    });
+  }
+
+  res.json({
+    message: "Note deleted successfully!",
+  });
+};
+
 exports.createNote = createNote;
 exports.getNote = getNote;
 exports.updateNote = updateNote;
+exports.deleteNote = deleteNote;
 exports.getAllNotes = getAllNotes;
