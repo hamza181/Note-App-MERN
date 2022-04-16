@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from "react";
-import OutlinedCard from "../../components/OutlinedCard";
 import classes from "./Home.module.scss";
 import axios from "axios";
 
 const Home = () => {
-  const [todo, setTodo] = useState([{ id: 1, notes: "Learn React" }]);
   const [inputValue, setInputValue] = useState("");
-  const [indexValue, setIndexValue] = useState("");
-  const [editInputValue, setEditInputValue] = useState("");
   const [editableForm, setEditableForm] = useState(false);
   const [editItemId, setEditItemId] = useState("");
   const [notes, setNotes] = useState([]);
