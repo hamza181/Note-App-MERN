@@ -38,6 +38,20 @@ const getNote = async (req, res, next) => {
   });
 };
 
+const getAllNotes = async (req, res, next) => {
+  let note;
+  try {
+    note = await Note.find();
+  } catch (error) {
+    res.status(500).json({
+      message: "Fetching notes failed!",
+    });
+  }
+  res.json({
+    note: note,
+  });
+};
+
 const updateNote = async (req, res, next) => {
   const noteId = req.params.id;
   const { title, description } = req.body;
@@ -71,3 +85,4 @@ const updateNote = async (req, res, next) => {
 exports.createNote = createNote;
 exports.getNote = getNote;
 exports.updateNote = updateNote;
+exports.getAllNotes = getAllNotes;
